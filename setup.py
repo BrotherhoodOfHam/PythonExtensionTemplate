@@ -12,7 +12,6 @@ class CMakeExtension(Extension):
         Extension.__init__(self, name, sources=[])
         self.sourcedir = os.path.abspath(sourcedir)
 
-
 class CMakeBuild(build_ext):
     def run(self):
         try:
@@ -51,17 +50,19 @@ class CMakeBuild(build_ext):
         subprocess.check_call(['cmake', ext.sourcedir] + cmake_args, cwd=self.build_temp, env=env)
         subprocess.check_call(['cmake', '--build', '.'] + build_args, cwd=self.build_temp)
 
+
 with open("README.md") as f:
     long_desc = f.read()
 
-        
 setup(
     name="PythonExtensionTemplate",
     version = "1.0.0",
     #author = "",
     description="Python c++ extension template",
     long_description = long_desc,
+    long_description_content_type="text/markdown",
     ext_modules=[CMakeExtension('template')],
     scripts = ["scripts/test.py"],
-    cmdclass=dict(build_ext=CMakeBuild)
+    cmdclass=dict(build_ext=CMakeBuild),
+    setup_requires=["cmake"],
 )

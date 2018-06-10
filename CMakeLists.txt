@@ -8,3 +8,5 @@ pybind11_add_module(
     template
     src/main.cpp
 )
+
+install(TARGETS template DESTINATION ".")
