@@ -6,5 +6,5 @@ add_subdirectory("${PROJECT_SOURCE_DIR}/pybind")
 
 pybind11_add_module(
     template
-    template/template.cpp
+    src/main.cpp
 )
